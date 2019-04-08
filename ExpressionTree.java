@@ -7,7 +7,10 @@ public class ExpressionTree{
   public String toString(){
     /*you are to write this method*/
     if (isValue()) return "" + getValue();
+    // if the tree is just a value (no branches stemming from it), return the value
     return "(" + getLeft().toString() + " " + getOp() + " " + getRight().toString() + ")";
+    // else return the toString of the left branch + operator + toString of right branch, with spaces between them
+    // and all of that in parentheses
   }
 
   /*return the expression as a postfix notation string without parenthesis*/
@@ -15,7 +18,10 @@ public class ExpressionTree{
   public String toStringPostfix(){
     /*you are to write this method*/
     if (isValue()) return "" + getValue();
+    // if the tree is just a value (no branches stemming from it), return the value
     return getLeft().toStringPostfix() + " " + getRight().toStringPostfix() + " " + getOp();
+    // return call toStringPostfix of left branch, toStringPostfix of right branch and then operator,
+    // with spaces between each
   }
 
   /*return the expression as a prefix notation string without parenthesis*/
@@ -24,19 +30,25 @@ public class ExpressionTree{
   public String toStringPrefix(){
     /*you are to write this method*/
     if (isValue()) return "" + getValue();
+    // if the tree is just a value (no branches stemming from it), return the value
     return getOp() + " " + getLeft().toStringPrefix() + " " + getRight().toStringPrefix();
+    // return operator, call toStringPrefix of left branch, and then toStringPrefix of right branch
+    // with spaces between each
   }
 
   /*return the value of the specified expression tree*/
   public double evaluate(){
     /*you are to write this method*/
     if (isValue()) return getValue();
+    // if the tree is just a value (no branches stemming from it), return the value
     return apply(getOp(), getLeft().evaluate(), getRight().evaluate());
+    // else call apply on operator, on the evaluate left branch, and evaluate right branch
     }
 
   /*use the correct operator on both a and b, and return that value*/
   private double apply(char op, double a, double b){
     /*you are to write this method*/
+    // apply corresponding operations depending on the op
     if (op == '+'){
       return a + b;
     }
